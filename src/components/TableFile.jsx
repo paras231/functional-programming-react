@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { sortByName } from "../Helper";
 import { tabeldata } from "./data";
 
@@ -28,6 +28,26 @@ const TableFile = () => {
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [usersPerPage] = useState(10);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredData.slice(indexOfFirstUser, indexOfLastUser);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const next = () => {
+    if (currentPage < Math.ceil(filteredData.length / usersPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const prev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
     <>
       <input
@@ -53,7 +73,7 @@ const TableFile = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((item, index) => (
+          {currentUsers.map((item, index) => (
             <tr key={index}>
               <td>{item.name}</td>
               <td>{item.email}</td>
@@ -61,6 +81,14 @@ const TableFile = () => {
           ))}
         </tbody>
       </table>
+      <div className="flex gap-4">
+        <button className="bg-blue-600" onClick={prev}>
+          Prev
+        </button>
+        <button className="bg-yellow-600" onClick={next}>
+          Next
+        </button>
+      </div>
     </>
   );
 };
