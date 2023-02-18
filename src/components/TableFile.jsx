@@ -11,6 +11,7 @@ const TableFile = () => {
     setData(tabeldata);
   }, [tabeldata]);
 
+  // sort feature
   const handleSortByName = () => {
     //  it is important to spread the array so we can create a new array.
     const sortedData = sortByName([...data]);
@@ -29,6 +30,7 @@ const TableFile = () => {
     item.name.toLowerCase().includes(query.toLowerCase())
   );
 
+  // pagination feature
   const [currentPage, setCurrentPage] = useState(1);
 
   const [usersPerPage] = useState(10);
