@@ -29,7 +29,7 @@ const TableFile = () => {
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
-
+ 
   // pagination feature
   const [currentPage, setCurrentPage] = useState(1);
 
