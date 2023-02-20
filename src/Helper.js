@@ -19,3 +19,15 @@ export function sortByName(arr) {
   });
   return arr;
 }
+
+// ? create a function that takes an array as parameter and when i click on any array element, that element should be removed from the array->
+
+export function removeElement(arr){
+
+  // iterate through the array
+
+  arr.map((value,index)=>{
+    console.log(value);
+  })
+
+}

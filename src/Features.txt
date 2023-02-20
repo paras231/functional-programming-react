@@ -1,0 +1,15 @@
+
+Feature 1->
+
+  create a table (normal html table component) that has sort functionality by name and search feature by name
+
+  progress->  Done.
+
+
+Feature 2->
+
+
+// let assume i have an array of objects and i want to create cards from this array data
+
+// when i click on any card i want to place that card in a seperate container and remove that card from the card list.
+
