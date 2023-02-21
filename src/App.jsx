@@ -6,6 +6,7 @@ import TableFile from "./components/TableFile";
 import CardGame from "./components/CardGame";
 import CreatableForm from "./components/CreatableForm";
 import HookConcepts from "./components/HookConcepts";
+import FunctionalConcepts from "./components/FunctionalConcepts";
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
       <HeroSection /> */}
       <div className="bg-purple-400  mx-auto container p-10">
         {/* <TableFile /> */}
-        <CardGame />
+        {/* <CardGame /> */}
+        <FunctionalConcepts />
         {/* <CreatableForm /> */}
         {/* <HookConcepts/> */}
       </div>
