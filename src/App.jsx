@@ -7,6 +7,12 @@ import CardGame from "./components/CardGame";
 import CreatableForm from "./components/CreatableForm";
 import HookConcepts from "./components/HookConcepts";
 import FunctionalConcepts from "./components/FunctionalConcepts";
+import ReducerHookConcept from "./components/Hooks/ReducerHookConcept";
+import {
+  NewComponent,
+  PracticeComponent,
+  JsConcepts
+} from "./components/FunctionalConcepts";
 
 const App = () => {
   return (
@@ -17,7 +23,11 @@ const App = () => {
       <div className="bg-purple-400  mx-auto container p-10">
         {/* <TableFile /> */}
         {/* <CardGame /> */}
-        <FunctionalConcepts />
+        {/* <FunctionalConcepts /> */}
+        {/* <NewComponent/> */}
+        {/* <PracticeComponent /> */}
+        <JsConcepts/>
+        {/* <ReducerHookConcept /> */}
         {/* <CreatableForm /> */}
         {/* <HookConcepts/> */}
       </div>
