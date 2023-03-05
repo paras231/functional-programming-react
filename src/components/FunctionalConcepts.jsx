@@ -272,7 +272,89 @@ export function JsConcepts() {
     setLevelData({ ...levelData, [name]: value });
   }
 
-  console.log(levels);
+  // console.log(levels);
+
+  //!  some important object methods->
+
+  const employee1 = {
+    name: "Paras",
+    age: 22,
+    position: "MERN STACK",
+    language: "JAVASCRIPT",
+  };
+
+  const employee2 = {
+    name: "Raja",
+    age: 26,
+    position: "FLUTTER",
+    language: "DART",
+    hobby: "Cooking",
+  };
+
+  //  merge these two objects->
+  const merged = { ...employee1, ...employee2 };
+  // console.log(merged);
+
+  // define property->
+
+  Object.defineProperties(employee1, {
+    hobby: {
+      value: "Coding",
+    },
+    status: {
+      value: "Online",
+    },
+  });
+
+  //  object.keys method->
+  const keys = Object.keys(employee1); // will create an array of keys of object.
+  // console.log(keys);
+
+  //  object.entries->
+  const values = Object.entries(employee2);
+  // console.log(values);
+  const d = [].concat(...values);
+  // console.log(d);
+  const [key, value] = values;
+  // console.log(key);
+
+  const arr1 = [
+    ["name", "Jay"],
+    ["age", 22],
+    ["location", "Jaipur"],
+  ];
+  const newObj = Object.fromEntries(arr1); // converts the 2d array into single object.
+  // console.log(newObj);
+
+  //! important array methods ->
+
+  const arr2 = ["name", "age", "gender", "value"];
+  const arr3 = ["name", "age", "gender", "value"];
+  console.log([...arr2, ...arr3]); // will merge the arrays.
+
+  // arr.entris
+  const [key1, value1] = arr2.entries();
+  console.log(key1, value1);
+
+  const arr = [
+    {
+      name: "Jain",
+    },
+    {
+      name: "sam",
+    },
+    {
+      name: "Jhon",
+    },
+  ];
+
+  arr.forEach((item) => {
+    if (!item.hasOwnProperty("age")) {
+      item.age = 20;
+    }
+  });
+  console.log(arr);
+
   return (
     <>
       {/* <User />
@@ -311,3 +393,68 @@ export function JsConcepts() {
     </>
   );
 }
+
+export const PromiseConcepts = () => {
+  const [orderStatus, setOrderStatus] = useState(false);
+  const [delivered, setDelivered] = useState(false);
+  //  update order status->
+  function updateOrderStatus() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        setOrderStatus(true);
+        resolve();
+        alert("status updated");
+      }, 2000);
+    });
+  }
+  console.log(orderStatus);
+
+  // check if delivered or not-> if not then updated status->
+
+  function updateDeliveryStatus() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        setDelivered(true);
+        alert("Order has been delivered");
+      }, 3000);
+    });
+  }
+
+  //  check if not delivered->
+  let deliveryTime = setInterval(() => {
+    if (delivered === false) {
+      alert("Please deliver the order");
+    }
+    clearInterval(deliveryTime);
+  }, 9000);
+  return (
+    <>
+      <span>
+        {!orderStatus ? (
+          <p>Waiting for acceptance</p>
+        ) : (
+          <h1>Order has been accepted</h1>
+        )}
+      </span>
+      <button
+        disabled={orderStatus}
+        className={
+          orderStatus === false
+            ? "bg-orange-400 rounded-sm p-2 text-sm"
+            : "bg-pink-400 rounded-sm p-2 text-sm"
+        }
+        onClick={updateOrderStatus}
+      >
+        {orderStatus === false ? "Accept" : "Accepted"}
+      </button>
+
+      <button 
+        disabled={delivered}
+        onClick={updateDeliveryStatus}
+        className="bg-yellow-400 p-2 rounded-sm text-sm"
+      >
+        {delivered ? "Delivered" : " Deliver Now"}
+      </button>
+    </>
+  );
+};

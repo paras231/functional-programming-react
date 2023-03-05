@@ -11,7 +11,8 @@ import ReducerHookConcept from "./components/Hooks/ReducerHookConcept";
 import {
   NewComponent,
   PracticeComponent,
-  JsConcepts
+  JsConcepts,
+  PromiseConcepts
 } from "./components/FunctionalConcepts";
 
 const App = () => {
@@ -26,7 +27,8 @@ const App = () => {
         {/* <FunctionalConcepts /> */}
         {/* <NewComponent/> */}
         {/* <PracticeComponent /> */}
-        <JsConcepts/>
+        {/* <JsConcepts/> */}
+        <PromiseConcepts/>
         {/* <ReducerHookConcept /> */}
         {/* <CreatableForm /> */}
         {/* <HookConcepts/> */}
