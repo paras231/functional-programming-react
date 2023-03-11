@@ -8,6 +8,7 @@ import CreatableForm from "./components/CreatableForm";
 import HookConcepts from "./components/HookConcepts";
 import FunctionalConcepts from "./components/FunctionalConcepts";
 import ReducerHookConcept from "./components/Hooks/ReducerHookConcept";
+import Timeline from "./components/Timeline";
 import {
   NewComponent,
   PracticeComponent,
@@ -19,6 +20,8 @@ import {
   CommonProductcard,
   CommonTableComponent,
 } from "./components/PropsData/Common";
+
+import { RecursionConcept } from "./Recursion/Recursion";
 
 const product = {
   img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
@@ -32,7 +35,7 @@ const App = () => {
       {/* <Quiz/> */}
       {/* <Header />
       <HeroSection /> */}
-      <div className="bg-purple-400  mx-auto container p-10">
+      <div className="  mx-auto container p-10">
         {/* <TableFile /> */}
         {/* <CardGame /> */}
         {/* <FunctionalConcepts /> */}
@@ -43,9 +46,11 @@ const App = () => {
         {/* <ReducerHookConcept /> */}
         {/* <CreatableForm /> */}
         {/* <HookConcepts/> */}
-        <ParentCommon />
+        {/* <ParentCommon />
         <CommonProductcard product={product} />
-        <CommonTableComponent />
+        <CommonTableComponent /> */}
+        {/* <RecursionConcept /> */}
+        <Timeline/>
       </div>
     </>
   );
