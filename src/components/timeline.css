@@ -1,6 +1,7 @@
 .timeline {
   display: flex;
   flex-direction: column;
+  width: 55%;
 }
 
 .event {
@@ -9,6 +10,7 @@
   margin: 20px 0;
   background-color: #f5f5f5;
   border-radius: 5px;
+  transition: all 5s ease;
 }
 
 .event::before {
@@ -30,11 +32,11 @@
 
 .event.active {
   background-color: #fff;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .event.active::before {
-  border-left: 2px solid #007bff;
+  border-left: 2px dotted #007bff;
 }
 
 .event-date {
@@ -51,6 +53,7 @@
 .event-description {
   margin-top: 10px;
   font-size: 16px;
+  transition: all 0.2s ease;
 }
 
 .location-icon {
@@ -60,4 +63,10 @@
   transform: translateY(-50%);
   color: #007bff;
   font-size: 20px;
+}
+
+.event.expanded {
+  height: auto;
+  max-height: none;
+  transition: height 0.3s ease;
 }

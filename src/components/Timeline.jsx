@@ -1,35 +1,37 @@
 import React, { useState } from "react";
 import "./timeline.css";
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
+
 const data = [
   {
-    title: "Event 1",
-    date: "January 1, 2022",
+    title: "Day 1",
+    date: "Port Blair (2N)",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
   {
-    title: "Event 2",
-    date: "February 15, 2022",
+    title: "Day 2",
+    date: "Port Blair",
     description:
       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
-    title: "Event 3",
-    date: "April 10, 2022",
+    title: "Day 3",
+    date: "Neil Island",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, ",
   },
   {
-    title: "Event 4",
-    date: "April 10, 2022",
+    title: "Day 4",
+    date: "Havelock",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, ",
   },
 ];
 
 const Timeline = () => {
   const [activeEvent, setActiveEvent] = useState(null);
-
+  const [isExpanded, setIsExpanded] = useState(false);
   const handleEventClick = (event) => {
     if (activeEvent === event) {
       setActiveEvent(null);
@@ -37,22 +39,42 @@ const Timeline = () => {
       setActiveEvent(event);
     }
   };
+  const handleExpandAllClick = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <>
+      <button onClick={handleExpandAllClick}>Expand All</button>
       <div className="timeline">
         {data.map((event) => (
-          <div
-            key={event.title}
-            className={`event ${activeEvent === event ? "active" : ""}`}
-            onClick={() => handleEventClick(event)}
-          >
-             <FaMapMarkerAlt className="location-icon" />
-            <div className="event-date">{event.date}</div>
-            <div className="event-title">{event.title}</div>
-            {activeEvent === event && (
-              <div className="event-description">{event.description}</div>
-            )}
-          </div>
+          <>
+            <motion.div
+              whileHover={{
+                transition: { duration: 1 },
+                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                cursor: "pointer",
+                borderRadius: "5px",
+              }}
+              whileTap={{
+                scale: 1.02,
+              }}
+            >
+              <div
+                key={event.title}
+                className={`event ${activeEvent === event ? "active" : ""} ${
+                  isExpanded ? "expanded" : ""
+                }`}
+                onClick={() => handleEventClick(event)}
+              >
+                <FaMapMarkerAlt className="location-icon" />
+                <div className="event-date">{event.date}</div>
+                <div className="event-title">{event.title}</div>
+                {activeEvent === event && (
+                  <div className="event-description">{event.description}</div>
+                )}
+              </div>
+            </motion.div>
+          </>
         ))}
       </div>
     </>
