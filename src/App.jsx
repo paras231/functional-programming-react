@@ -14,6 +14,8 @@ import {
   PracticeComponent,
   JsConcepts,
   PromiseConcepts,
+  CronJobConcept,
+  AdvanceFunctions,
 } from "./components/FunctionalConcepts";
 import {
   ParentCommon,
@@ -50,7 +52,9 @@ const App = () => {
         <CommonProductcard product={product} />
         <CommonTableComponent /> */}
         {/* <RecursionConcept /> */}
-        <Timeline/>
+        {/* <Timeline/> */}
+        <AdvanceFunctions />
+        {/* <CronJobConcept /> */}
       </div>
     </>
   );

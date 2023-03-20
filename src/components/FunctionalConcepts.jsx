@@ -448,13 +448,140 @@ export const PromiseConcepts = () => {
         {orderStatus === false ? "Accept" : "Accepted"}
       </button>
 
-      <button 
+      <button
         disabled={delivered}
         onClick={updateDeliveryStatus}
         className="bg-yellow-400 p-2 rounded-sm text-sm"
       >
         {delivered ? "Delivered" : " Deliver Now"}
       </button>
+    </>
+  );
+};
+
+export const CronJobConcept = () => {
+  const [time, setTime] = useState(0);
+  const [element, setElement] = useState(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prev) => prev + 1);
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setElement(<div>Rendered at {new Date().toLocaleTimeString()}</div>); // renders time
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+  return (
+    <>
+      <h3>{time}</h3>
+      {element}
+    </>
+  );
+};
+
+export const AdvanceFunctions = () => {
+  // create a function take takes an array or a object as an argument and return a jsx element accordingly->
+
+  function GridList({ data }) {
+    if (
+      data &&
+      data !== null &&
+      data !== undefined &&
+      !data.hasOwnProperty("from")
+    ) {
+      if (data.length >= 2) {
+        console.log(data);
+        return (
+          <>
+            <div>
+              {data.map((value, i) => {
+                return (
+                  <div key={i}>
+                    <div className="flex ">
+                      <span>{value.from}</span>
+                      <span>{value.to}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <div>
+              {data.map((value, i) => {
+                return (
+                  <div key={i}>
+                    <div className="flex gap-2 bg-purple-500 font-bold">
+                      <span>{value.from}</span>
+                      <span>{value.to}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        );
+      }
+    }
+    return (
+      <>
+        <div className="flex">
+          <span>{data?.from}</span>
+          <p>{data?.to}</p>
+        </div>
+      </>
+    );
+  }
+  const data = [
+    {
+      from: "Port Blair",
+      to: "Havelock",
+    },
+  ];
+
+  // create a function that uses output of another function and returns something->
+
+  let user = {
+    status: "online",
+    activities: ["games", "coding", "football"],
+  };
+
+  function userActivity(userObj) {
+    // check user
+    const checkUser = isUserLoggedIn(user);
+    if (checkUser && userObj) {
+      console.log(userObj.activities);
+    }
+  }
+  userActivity(user);
+
+  // check if user is loggedin->
+
+  function isUserLoggedIn(user) {
+    if (user && user !== null && user !== undefined) {
+      if (user.status === "online") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  return (
+    <>
+      <h3>Advanced</h3>
+      <GridList data={data} />
     </>
   );
 };

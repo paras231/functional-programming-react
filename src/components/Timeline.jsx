@@ -1,37 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./timeline.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import useSWR from "swr";
+import axios from "axios";
 
-const data = [
-  {
-    title: "Day 1",
-    date: "Port Blair (2N)",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    title: "Day 2",
-    date: "Port Blair",
-    description:
-      "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    title: "Day 3",
-    date: "Neil Island",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, ",
-  },
-  {
-    title: "Day 4",
-    date: "Havelock",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, ",
-  },
-];
 
 const Timeline = () => {
+  const [datas,setDatas] = useState();
+  const id = "640ea88ea7cfc9a13b64854b";
+  const baseURL = "https://seeandamans-zf44.onrender.com";
+  const fetchData = async () => {
+    const { data } = await axios.get(`${baseURL}/api/user/package/${id}`);
+    console.log(data);
+    setDatas(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  },[]); 
+
   const [activeEvent, setActiveEvent] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false);
+  
   const handleEventClick = (event) => {
     if (activeEvent === event) {
       setActiveEvent(null);
@@ -39,16 +29,15 @@ const Timeline = () => {
       setActiveEvent(event);
     }
   };
-  const handleExpandAllClick = () => {
-    setIsExpanded(!isExpanded);
-  };
+  
   return (
     <>
-      <button onClick={handleExpandAllClick}>Expand All</button>
+      {/* <button onClick={handleExpandAllClick}>Expand All</button> */}
       <div className="timeline">
-        {data.map((event) => (
-          <>
+        {datas?.mypackage?.days?.map((event, index) => (
+       
             <motion.div
+            key={index}
               whileHover={{
                 transition: { duration: 1 },
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
@@ -60,21 +49,19 @@ const Timeline = () => {
               }}
             >
               <div
-                key={event.title}
-                className={`event ${activeEvent === event ? "active" : ""} ${
-                  isExpanded ? "expanded" : ""
-                }`}
+                key={index}
+                className={`event ${activeEvent === event ? "active" : ""}`}
                 onClick={() => handleEventClick(event)}
               >
                 <FaMapMarkerAlt className="location-icon" />
-                <div className="event-date">{event.date}</div>
-                <div className="event-title">{event.title}</div>
+                <div className="event-date">{event.day}</div>
+                <div className="event-title">{event.location}</div>
                 {activeEvent === event && (
-                  <div className="event-description">{event.description}</div>
+                  <div className="event-description">{event.activity}</div>
                 )}
               </div>
             </motion.div>
-          </>
+         
         ))}
       </div>
     </>
