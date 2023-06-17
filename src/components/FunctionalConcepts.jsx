@@ -578,6 +578,10 @@ export const AdvanceFunctions = () => {
     return false;
   }
 
+
+  
+
+
   return (
     <>
       <h3>Advanced</h3>

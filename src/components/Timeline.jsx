@@ -8,11 +8,11 @@ import axios from "axios";
 
 const Timeline = () => {
   const [datas,setDatas] = useState();
-  const id = "640ea88ea7cfc9a13b64854b";
+  const id = "6411fb0d63c2ca809d288c8a";
   const baseURL = "https://seeandamans-zf44.onrender.com";
   const fetchData = async () => {
     const { data } = await axios.get(`${baseURL}/api/user/package/${id}`);
-    console.log(data);
+  
     setDatas(data);
   };
 
@@ -22,14 +22,15 @@ const Timeline = () => {
 
   const [activeEvent, setActiveEvent] = useState(null);
   
-  const handleEventClick = (event) => {
-    if (activeEvent === event) {
-      setActiveEvent(null);
-    } else {
-      setActiveEvent(event);
-    }
-  };
-  
+  // const handleEventClick = (event) => {
+  //   if (activeEvent === event) {
+  //     setActiveEvent(null);
+  //   } else {
+  //     setActiveEvent(event);
+  //   }
+  //   console.log(event) ; 
+  // };
+  console.log(activeEvent);
   return (
     <>
       {/* <button onClick={handleExpandAllClick}>Expand All</button> */}
@@ -37,7 +38,7 @@ const Timeline = () => {
         {datas?.mypackage?.days?.map((event, index) => (
        
             <motion.div
-            key={index}
+            key={`event-${index}`}
               whileHover={{
                 transition: { duration: 1 },
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
@@ -48,15 +49,17 @@ const Timeline = () => {
                 scale: 1.02,
               }}
             >
-              <div
-                key={index}
+              <div 
+                key={`event-${index}`}
                 className={`event ${activeEvent === event ? "active" : ""}`}
-                onClick={() => handleEventClick(event)}
+                onClick={() =>
+                  setActiveEvent(index === activeEvent ? null : index)
+                }
               >
                 <FaMapMarkerAlt className="location-icon" />
                 <div className="event-date">{event.day}</div>
                 <div className="event-title">{event.location}</div>
-                {activeEvent === event && (
+                {activeEvent === index && (
                   <div className="event-description">{event.activity}</div>
                 )}
               </div>
