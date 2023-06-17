@@ -16,6 +16,7 @@ import {
   PromiseConcepts,
   CronJobConcept,
   AdvanceFunctions,
+  NewCardGame,
 } from "./components/FunctionalConcepts";
 import {
   ParentCommon,
@@ -38,7 +39,8 @@ const App = () => {
       {/* <Header />
       <HeroSection /> */}
       <div className="  mx-auto container p-10">
-        {/* <TableFile /> */}
+        <TableFile />
+        <NewCardGame/>
         {/* <CardGame /> */}
         {/* <FunctionalConcepts /> */}
         {/* <NewComponent/> */}
@@ -52,7 +54,7 @@ const App = () => {
         <CommonProductcard product={product} />
         <CommonTableComponent /> */}
         {/* <RecursionConcept /> */}
-        <Timeline/>
+        {/* <Timeline/> */}
         {/* <AdvanceFunctions /> */}
         {/* <CronJobConcept /> */}
       </div>

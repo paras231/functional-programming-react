@@ -578,14 +578,78 @@ export const AdvanceFunctions = () => {
     return false;
   }
 
-
-  
-
-
   return (
     <>
       <h3>Advanced</h3>
       <GridList data={data} />
+    </>
+  );
+};
+
+export const NewCardGame = () => {
+  const sampleData = [
+    {
+      id: 1,
+      fruit: "Apple",
+    },
+    {
+      id: 2,
+      fruit: "Guava",
+    },
+    {
+      id: 3,
+      fruit: "Banana",
+    },
+  ];
+  const [data, setData] = useState(sampleData);
+  const [deletedItem, setDeletedItem] = useState([]);
+  function handleDeleteItem(index) {
+    const newData = [...data];
+    const value = newData.splice(index, 1);
+    setData(newData);
+    setDeletedItem([...deletedItem, value]);
+  }
+
+  function handleAddAgain(newData) {
+    if (data.length >= 3) {
+      return;
+    }
+    setData([...data, newData]);
+  }
+
+  return (
+    <>
+      <div className="flex justify-center gap-10">
+        {data.map((i, index) => {
+          return (
+            <div key={index}>
+              <div
+                onClick={() => handleDeleteItem(index)}
+                className="bg-purple-400 p-4 text-center cursor-pointer"
+              >
+                {i.fruit}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {/* show deleted items */}
+      <h1 className="flex justify-center text-center">Deleted Items</h1>
+      <div className="flex justify-center gap-10">
+        {deletedItem.map((i, index) => {
+          console.log(i);
+          return (
+            <div key={index}>
+              <div
+                onClick={() => handleAddAgain(i[0])}
+                className="bg-red-600 p-4 text-center cursor-pointer"
+              >
+                {i[0]?.fruit}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };
